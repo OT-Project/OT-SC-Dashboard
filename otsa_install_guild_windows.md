@@ -7,6 +7,8 @@
 > Tài liệu thiết lập môi trường dev trên **Windows 10/11 + WSL2 Ubuntu 24.04 + Docker Desktop (WSL backend)**.
 > Phần Git workflow (clone, branch, PR, rebase…) giống hệt bản Linux — xem `ot_sc_install_guide.md` mục **Quản lý Git**.
 
+>Lưu ý: Đây là tài liệu dùng 1 lần (trừ phần workflow hàng ngày)
+
 ---
 
 ## Kiến trúc
@@ -167,13 +169,6 @@ source ~/.bashrc       # hoặc ~/.zshrc nếu dùng zsh
 # Verify NVM version
 nvm --version
 # 0.39.7
-
-nvm install 18.19.0 && nvm alias default 18.19.0
-node -v                # phải in v18.19.0
-
-# Yarn classic v1
-npm install -g yarn
-yarn -v                # 1.22.x
 ```
 
 > Nếu sau này dùng terminal mới mà `nvm` không tìm thấy → `source ~/.nvm/nvm.sh` hoặc đảm bảo block init NVM đã được append vào `~/.bashrc` / `~/.zshrc`. 
@@ -266,7 +261,7 @@ TOKEN=$(curl -sk -u 'wazuh-wui:MyS3cr37P450r.*-' \
   | jq -r '.data.token')
 
 curl -k -H "Authorization: Bearer $TOKEN" 'https://localhost:55000/'
-# {"data": {"title": "Wazuh API REST", "api_version": "4.14.4", ...}}
+# {"data": {"title": "Wazuh API REST", "api_version": "4.14.4", ...}, "error": 0} 
 ```
 
 Trên Windows browser cũng có thể test trực tiếp:
@@ -296,7 +291,13 @@ sudo ./scripts/umount-plugins.sh
 
 ```bash
 cd ~/projects/otsd/OTSD-Dashboard
-nvm use                                              # Now using node v18.19.0
+nvm install                                        # Now using node v18.19.0
+nvm use                                            # Now using node v18.19.0 (npm v10.2.3)
+
+# Yarn classic v1
+npm install -g yarn
+yarn -v                # 1.22.x
+
 yarn osd bootstrap --single-version=ignore           # ~5–15 phút, 100% CPU
 ```
 
@@ -313,7 +314,10 @@ yarn start --no-base-path
 # [info][listening] Server running at http://0.0.0.0:5601
 ```
 
-Đợi 3–5 phút (lần đầu compile bundles). Trên **browser Windows**, truy cập:
+**QUAN TRỌNG: Đợi 3–5 phút (lần đầu compile bundles) cho đến khi xuất hiện thông báo**
+>[success][@osd/optimizer] XX bundles compiled successfully after YYY sec, watching for changes
+
+Trên **browser Windows**, truy cập:
 
 **<http://localhost:5601/app/wz-home>**
 
