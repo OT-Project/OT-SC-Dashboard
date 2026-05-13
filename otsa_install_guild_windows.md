@@ -108,7 +108,6 @@ Tạo file `C:\Users\<bạn>\.wslconfig` (không có extension, viết bằng No
 ```ini
 [wsl2]
 memory=10GB          # cấp 10GB RAM cho WSL VM (chỉnh theo RAM máy)
-processors=8         # số core, để bằng số core vật lý
 swap=4GB
 localhostForwarding=true
 
