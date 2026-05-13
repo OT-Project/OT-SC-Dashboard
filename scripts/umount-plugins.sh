@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
-# umount-plugins.sh - Tháo bind mount plugins của OT-SC-Dashboard
+# umount-plugins.sh - Tháo bind mount plugins của OTSD-Dashboard
 #
-# Vị trí: OT-SC-Dashboard/scripts/umount-plugins.sh
+# Vị trí: OTSD-Dashboard/scripts/umount-plugins.sh
 # Usage:  sudo ./scripts/umount-plugins.sh
 #
 # Chạy trước khi:
 #   - yarn osd clean (tránh xóa nhầm source repo qua mount)
-#   - Các thao tác git lớn trên OT-SC-Dashboard
+#   - Các thao tác git lớn trên OTSD-Dashboard
 #   - Reboot/shutdown (cho sạch)
 #
 

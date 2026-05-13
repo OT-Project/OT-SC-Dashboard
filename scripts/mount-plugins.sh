@@ -2,31 +2,31 @@
 #
 # mount-plugins.sh - Bind mount Wazuh plugins vào plugins/ của Dashboard
 #
-# Vị trí: OT-SC-Dashboard/scripts/mount-plugins.sh
+# Vị trí: OTSD-Dashboard/scripts/mount-plugins.sh
 # Usage:  sudo ./scripts/mount-plugins.sh
 #
 # Giả định layout:
 #   OT-Project/
-#     ├── OT-SC-Dashboard/              <- repo hiện tại
+#     ├── OTSD-Dashboard/              <- repo hiện tại
 #     │   ├── plugins/                   <- target mount point
 #     │   └── scripts/mount-plugins.sh   <- script này
-#     ├── OT-SC-Dashboard-Plugins/
-#     └── OT-SC-Security-Plugin/
+#     ├── OTSD-Dashboard-Plugins/
+#     └── OTSD-Security-Plugin/
 #
 
 set -euo pipefail
 
 # Resolve đường dẫn:
-#   SCRIPT_DIR     = OT-SC-Dashboard/scripts/
-#   DASHBOARD_ROOT = OT-SC-Dashboard/
-#   PROJECT_ROOT   = OT-Project/ (cha của OT-SC-Dashboard)
+#   SCRIPT_DIR     = OTSD-Dashboard/scripts/
+#   DASHBOARD_ROOT = OTSD-Dashboard/
+#   PROJECT_ROOT   = OT-Project/ (cha của OTSD-Dashboard)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DASHBOARD_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 PROJECT_ROOT="$(cd "$DASHBOARD_ROOT/.." && pwd)"
 
 DASHBOARD_PLUGINS="${DASHBOARD_ROOT}/plugins"
-SOURCE_PLUGINS="${PROJECT_ROOT}/OT-SC-Dashboard-Plugins/plugins"
-SECURITY_PLUGIN="${PROJECT_ROOT}/OT-SC-Security-Plugin"
+SOURCE_PLUGINS="${PROJECT_ROOT}/OTSD-Dashboard-Plugins/plugins"
+SECURITY_PLUGIN="${PROJECT_ROOT}/OTSD-Security-Plugin"
 
 # Danh sách mount: "source|target"
 MOUNTS=(
@@ -43,10 +43,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Check các repo anh em tồn tại
-for dir in "OT-SC-Dashboard-Plugins" "OT-SC-Security-Plugin"; do
+for dir in "OTSD-Dashboard-Plugins" "OTSD-Security-Plugin"; do
   if [[ ! -d "${PROJECT_ROOT}/${dir}" ]]; then
     echo "ERROR: Không tìm thấy '${dir}' trong ${PROJECT_ROOT}" >&2
-    echo "Các repo OT-SC-* phải nằm cùng cấp với OT-SC-Dashboard" >&2
+    echo "Các repo OTSD-* phải nằm cùng cấp với OTSD-Dashboard" >&2
     exit 1
   fi
 done
