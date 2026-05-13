@@ -314,7 +314,7 @@ yarn start --no-base-path
 # [info][listening] Server running at http://0.0.0.0:5601
 ```
 
-**QUAN TRỌNG: Đợi 3–5 phút (lần đầu compile bundles) cho đến khi xuất hiện thông báo**
+**QUAN TRỌNG: Đợi 15 phút (lần đầu compile bundles) cho đến khi xuất hiện thông báo**
 >[success][@osd/optimizer] XX bundles compiled successfully after YYY sec, watching for changes
 
 Trên **browser Windows**, truy cập:
